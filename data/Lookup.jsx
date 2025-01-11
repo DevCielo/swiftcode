@@ -1,14 +1,13 @@
 import dedent from "dedent";
 
 export default {
-  SUGGESTIONS: ['Create ToDo App in React', 'Create Budget Track App', 'Create Gym Managment Portal Dashboard', 'Create Quizz App On History', 'Create Login Signup Screen'],
+  SUGGESTIONS: ['Create Todo App in React', 'Create a Budget Track App', 'Create a Gym Managment Portal Dashboard', 'Create a Quiz App On History', 'Create a Login and Signup Screen'],
   HERO_HEADING: 'What do you want to build?',
   HERO_DESC: 'Prompt, run, edit, and deploy full-stack web apps.',
-  INPUT_PLACEHOLDER: 'What you want to build?',
-  SIGNIN_HEADING: 'Continue With Bolt.New 2.0',
+  INPUT_PLACEHOLDER: 'What do you want to build?',
+  SIGNIN_HEADING: 'Continue With Swiftcode',
   SIGNIN_SUBHEADING: 'To use Bolt you must log into an existing account or create one.',
   SIGNIn_AGREEMENT_TEXT: 'By using Bolt, you agree to the collection of usage data for analytics.',
-
 
   DEFAULT_FILE: {
     '/public/index.html': {
@@ -85,21 +84,21 @@ export default config;
       name:'Starter',
       tokens:'120K',
       value:120000,
-      desc:'Designed for professionals who need to use Bolt a few times per week.',
+      desc:'Designed for professionals who need to use Swiftcode a few times per week.',
       price:9.99
     },
     {
       name:'Pro',
       tokens:'2.5M',
       value:2500000,
-      desc:'Designed for professionals who need to use Bolt a few times per week.',
+      desc:'Designed for professionals who need to use Swiftcode a few times per week.',
       price:19.99
     },
     {
       name:'Unlimted (License)',
-      tokens:'Unmited',
+      tokens:'Unlimited',
       value:999999999,
-      desc:'Designed for professionals who need to use Bolt a few times per week.',
+      desc:'Designed for professionals who need to use Swiftcode a few times per week.',
       price:49.99
     }
   ]
