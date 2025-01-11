@@ -9,7 +9,7 @@ import useScrollPrevention from "@/hooks/useScrollPrevention";
 import { ModeToggle } from "@/components/custom/ModeToggle";
 
 export default function Home() {
-  useScrollPrevention(150, 100);
+  useScrollPrevention(250, 100);
 
   return (
     <div className="relative h-[120rem] overflow-hidden">
