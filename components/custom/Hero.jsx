@@ -9,6 +9,9 @@ import { FlipWordsTitle } from './FlipWordsTitle';
 import { UserDetailContext } from '@/context/UserDetailContext';
 import SignInDialog from './SignInDialog';
 import { useTheme } from 'next-themes';
+import { useMutation } from 'convex/react';
+import { useRouter } from 'next/navigation';
+import { api } from '@/convex/_generated/api';
 
 const Hero = () => {
     const [userInput, setUserInput] = useState('');
@@ -17,24 +20,36 @@ const Hero = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const { theme, resolvedTheme } = useTheme();
     const [mounted, setMounted] = useState(false);
+    const CreateWorkspace = useMutation(api.workspace.CreateWorkspace);
+    const router = useRouter();
 
     useEffect(() => {
         setMounted(true);
     }, []);
 
-    const onGenerate = (input) => {
+    const onGenerate = async (input) => {
         if (!userDetail?.name) {
             setOpenDialog(true);
             return;
         }
-        setMessages({
+
+        const msg = {
             role: "user",
-            content: input,
-        });
+            content: input
+        }
+
+        setMessages(msg);
+
+        const workspaceId = await CreateWorkspace({
+            user: userDetail._id,
+            messages: [msg]
+        })
+        console.log(workspaceId)
+        router.push('/workspace/' + workspaceId);
+        
     };
 
     if (!mounted) {
-        // Prevent rendering until mounted to avoid hydration mismatch
         return null;
     }
 
