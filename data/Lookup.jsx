@@ -6,8 +6,8 @@ export default {
   HERO_DESC: 'Prompt, run, edit, and deploy full-stack web apps.',
   INPUT_PLACEHOLDER: 'What do you want to build?',
   SIGNIN_HEADING: 'Continue With Swiftcode',
-  SIGNIN_SUBHEADING: 'To use Bolt you must log into an existing account or create one.',
-  SIGNIn_AGREEMENT_TEXT: 'By using Bolt, you agree to the collection of usage data for analytics.',
+  SIGNIN_SUBHEADING: 'To use Swiftcode you must log into an existing account or create one.',
+  SIGNIN_AGREEMENT_TEXT: 'By using Swiftcode, you agree to the collection of usage data for analytics.',
 
   DEFAULT_FILE: {
     '/public/index.html': {
