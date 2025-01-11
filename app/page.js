@@ -6,6 +6,7 @@ import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import useScrollPrevention from "@/hooks/useScrollPrevention";
+import { ModeToggle } from "@/components/custom/ModeToggle";
 
 export default function Home() {
   useScrollPrevention(150, 100);
@@ -15,6 +16,7 @@ export default function Home() {
       <BackgroundBeams className="z-0" />
 
       <div className="relative z-10">
+        <ModeToggle/>
         <Hero />
       </div>
     </div>
