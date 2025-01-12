@@ -39,7 +39,7 @@ const Hero = () => {
       content: input,
     };
 
-    setMessages(msg);
+    // setMessages((prevMessages) => [...prevMessages, msg]);
 
     const workspaceId = await CreateWorkspace({
       user: userDetail._id,
