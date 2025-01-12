@@ -95,7 +95,7 @@ export default config;
       price:19.99
     },
     {
-      name:'Unlimted (License)',
+      name:'Unlimited (License)',
       tokens:'Unlimited',
       value:999999999,
       desc:'Designed for professionals who need to use Swiftcode a few times per week.',
