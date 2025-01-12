@@ -14,6 +14,8 @@ Generate a Project in React. Create multiple components, organizing them in sepa
 without any third-party dependencies or libraries, except for icons from the lucide-react library, which should only be used when necessary. Available icons include: Heart, Shield, Clock, Users, Play, Home, Search, Menu, User, Settings, Mail, Bell, Calendar, Star, Upload, Download, Trash, Edit, Plus, Minus, Check, X, and ArrowRight. For example, you can import an icon as import { Heart } from "lucide-react" and use it in JSX as <Heart className="" />.
 also you can use date-fns for date format and react-chartjs-2 chart, graph library
 
+**Important:** Ensure that the App.js file is updated to import and utilize the main components of the project. Replace any default content in App.js with the necessary code to render the generated components.
+
 Return the response in JSON format with the following schema:
 {
   "projectTitle": "",
