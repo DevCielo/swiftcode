@@ -13,6 +13,7 @@ import ReactMarkdown from 'react-markdown';
 
 import { useParams } from 'next/navigation'
 import React, { useContext, useEffect, useState } from 'react'
+import { useSidebar } from '../ui/sidebar';
 
 const ChatView = () => {
     const {id} = useParams();
@@ -22,6 +23,7 @@ const ChatView = () => {
     const [userInput, setUserInput] = useState();
     const [loading, setLoading] = useState(false);
     const UpdateMessages = useMutation(api.workspace.UpdateMessages);
+    const {toggleSidebar} = useSidebar();
 
     useEffect(() => {
         id&&GetWorkspaceData();
@@ -103,23 +105,43 @@ const ChatView = () => {
         </div>
 
         {/* Input Section */}
-        <div className='p-5 border rounded-xl max-w-xl w-full mt-3'
-        style = {{
-            backgroundColor: Colors.BACKGROUND
-        }}
-        >
-            <div className='flex gap-2'>
-                <textarea onChange={(event) => setUserInput(event.target.value)} value={userInput} placeholder={Lookup.INPUT_PLACEHOLDER} 
-                className='outline-none bg-transparent w-full h-32 max-h-56 resize-none'
+        <div className='flex flex-col items-start gap-2 mt-3'>
+            <div
+                className='p-5 border rounded-xl max-w-xl w-full'
+                style={{
+                    backgroundColor: Colors.BACKGROUND,
+                }}
+            >
+                <div className='flex gap-2'>
+                    <textarea
+                        onChange={(event) => setUserInput(event.target.value)}
+                        value={userInput}
+                        placeholder={Lookup.INPUT_PLACEHOLDER}
+                        className='outline-none bg-transparent w-full h-32 max-h-56 resize-none'
+                    />
+                    {userInput && (
+                        <ArrowRight
+                            onClick={() => onGenerate(userInput)}
+                            className='bg-blue-500 p-2 h-10 w-10 rounded-md cursor-pointer'
+                        />
+                    )}
+                </div>
+                <div>
+                    <Link className='h-5 w-5' />
+                </div>
+            </div>
+            {userDetail && (
+                <Image
+                    onClick={toggleSidebar}
+                    src={userDetail?.picture}
+                    alt='user'
+                    width={30}
+                    height={30}
+                    className='rounded-full cursor-pointer'
                 />
-                {userInput && <ArrowRight
-                onClick={() => onGenerate(userInput)}
-                className='bg-blue-500 p-2 h-10 w-10 rounded-md cursor-pointer'/>}
-            </div> 
-            <div>
-                <Link className='h-5 w-5' />
-            </div>               
+            )}
         </div>
+
 
     </div>
   )
