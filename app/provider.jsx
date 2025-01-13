@@ -1,42 +1,42 @@
-"use client"
-import React, { useEffect, useState } from 'react'
-import { ThemeProvider as NextThemesProvider, ThemeProvider } from 'next-themes'
-import Header from '@/components/custom/Header'
-import { MessagesContext } from '@/context/MessagesContext'
-import { UserDetailContext } from '@/context/UserDetailContext'
-import { GoogleOAuthProvider } from '@react-oauth/google'
-import { useConvex } from 'convex/react'
-import { api } from '@/convex/_generated/api'
-import { SidebarProvider } from '@/components/ui/sidebar'
-import AppSideBar from '@/components/custom/AppSideBar'
+// Provider.jsx
+"use client";
 
-const Provider = ({children}) => {
+import React, { useEffect, useState } from 'react';
+import { ThemeProvider } from 'next-themes';
+import Header from '@/components/custom/Header';
+import { MessagesContext } from '@/context/MessagesContext';
+import { UserDetailContext } from '@/context/UserDetailContext';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { useConvex } from 'convex/react';
+import { api } from '@/convex/_generated/api';
+import { SidebarProvider } from '@/components/ui/sidebar';
+import AppSideBar from '@/components/custom/AppSideBar';
+
+const Provider = ({ children }) => {
     const [messages, setMessages] = useState();
     const [userDetail, setUserDetail] = useState();
     const convex = useConvex();
 
     useEffect(() => {
         IsAuthenticated();
-    }, [])
+    }, []);
 
     const IsAuthenticated = async () => {
-        if (typeof window !== 'undefined') 
-        {
+        if (typeof window !== 'undefined') {
             const user = JSON.parse(localStorage.getItem('user'));
             // Fetch from Database
             const result = await convex.query(api.users.GetUser, {
-                email: user?.email
-            })
+                email: user?.email,
+            });
             setUserDetail(result);
             console.log(result);
         }
-    }
-  return (
-    <div>
+    };
 
+    return (
         <GoogleOAuthProvider clientId={process.env.NEXT_PUBLIC_GOOGLE_AUTH_CLIENT_ID_KEY}>
-            <UserDetailContext.Provider value={{userDetail, setUserDetail}}>
-                <MessagesContext.Provider value={{messages, setMessages}}>
+            <UserDetailContext.Provider value={{ userDetail, setUserDetail }}>
+                <MessagesContext.Provider value={{ messages, setMessages }}>
                     <ThemeProvider
                         attribute="class"
                         defaultTheme="dark"
@@ -45,15 +45,18 @@ const Provider = ({children}) => {
                     >
                         <Header />
                         <SidebarProvider defaultOpen={false}>
-                            <AppSideBar />
-                            {children}                           
+                            <div className="flex w-full">
+                                <AppSideBar />
+                                <main className="flex-1">
+                                    {children}
+                                </main>
+                            </div>
                         </SidebarProvider>
-                    </ThemeProvider>  
+                    </ThemeProvider>
                 </MessagesContext.Provider>
             </UserDetailContext.Provider>
         </GoogleOAuthProvider>
-    </div>
-  )
-}
+    );
+};
 
-export default Provider
+export default Provider;
